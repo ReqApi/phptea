@@ -1,0 +1,33 @@
+<?php
+
+class dog {
+	private $name;
+	private $breed;
+	private $age;
+	private $colour;
+	private $fur;
+	private $legs;
+	private $sound;
+
+	public function __construct($name, $breed, $age, $colour, $fur, $legs, $sound){
+		$this->name = $name;
+		$this->breed = $breed;
+		$this->age = $age;
+		$this->colour =$colour;
+		$this->fur = $fur;
+		$this->legs = $legs;
+		$this->sound = $sound;
+
+	}
+
+	public function bark(){
+		echo $this->name . ": " . $this->sound;
+	}
+}
+
+$chico = new dog("Chico", array("Pomeranian", "Terrier"), 6, "Brown", "Fuzzeh", 4, "ARF!");
+
+$chico->bark();
+
+print_r($chico);
+
