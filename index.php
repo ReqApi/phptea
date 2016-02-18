@@ -5,13 +5,26 @@ require "php_resources/chk.php";
 require "php_resources/cli.php";
 require "php_resources/player.php";
 require "php_resources/webInteract.php";
+require "php_resources/commandInterpreter.php";
 
 //require "vendor/autoload.php"
 
 $cli = new cli();
 //$cli = new cli();
 $chk = new chk($cli);
+$commandInterpreter = new commandInterpreter($cli);
 $knettenba = new character($cli, "CAT", "Cat", 22, "Bugger all.");
+
+$arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
+$commandInterpreter->whichCommand($arraything);
+$arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
+$commandInterpreter->whichCommand($arraything);
+$arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
+$commandInterpreter->whichCommand($arraything);
+$arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
+$commandInterpreter->whichCommand($arraything);
+$arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
+$commandInterpreter->whichCommand($arraything);
 /*
 $flibble = $knettenba->ask("I SPEeAAK. MROWL.");
 echo $flibble;
