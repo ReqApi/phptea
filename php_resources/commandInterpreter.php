@@ -3,13 +3,15 @@
 class commandInterpreter {
 	private $interactionObject = null;
 
-	public function __construct($object){
-		$this->interactionObject = $object;
+	public function __construct($intObject, $comList){
+		//takes the interaction object &
+		//the command list from settings.php
+		$this->interactionObject = $intObject;
+		$this->commandList = $comList;
 	}
 
 	//which command did the user input? use...with..., take, attack, etc
-	public function sliceInput(
-		$userInput, $outputString = null){
+	public function sliceInput($userInput, $outputString = null){
 
 		preg_match("/^(.*?)(?:\s+|$)(.*?)(?:\s+(.*?)\s+(.*?)$|$)/i", $userInput, $outputArray);
 
@@ -18,8 +20,8 @@ class commandInterpreter {
 	}
 
 	public function whichCommand($commandArray){
-		$commandList["part1"]["use"] = "use";
-		$commandList["part2"]["use"] = "with";
+		//which command is the user trying to use?
+		//this function takes the array created by sliceInput
 
 		$command1 = "?";
 		$parameter1 = "?";
@@ -28,7 +30,7 @@ class commandInterpreter {
 		if(isset($commandArray[1])){
 			echo "command1 exists";
 			$command1 = "exists";
-			foreach ($commandList["part1"] as $key => $handle){
+			foreach ($this->commandList["part1"] as $key => $handle){
 				if ($commandArray[1] == $handle){
 					$command1 = "valid";
 					echo "\ncommand1 is ".$commandArray[1]." ".$handle;
@@ -46,7 +48,7 @@ class commandInterpreter {
 		if(isset($commandArray[3])){
 			echo "\n command2 exists";
 			$command2 = "exists";
-			foreach ($commandList["part2"] as $key => $handle){
+			foreach ($this->commandList["part2"] as $key => $handle){
 				if ($commandArray[3] == $handle){
 					$command2 = "valid";
 					echo "\n command2 is ".$commandArray[3]." ".$handle;

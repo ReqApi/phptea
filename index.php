@@ -1,5 +1,6 @@
 <?php
 
+require "php_resources/settings.php";
 require "php_resources/character.php";
 require "php_resources/chk.php";
 require "php_resources/cli.php";
@@ -12,7 +13,7 @@ require "php_resources/commandInterpreter.php";
 $cli = new cli();
 //$cli = new cli();
 $chk = new chk($cli);
-$commandInterpreter = new commandInterpreter($cli);
+$commandInterpreter = new commandInterpreter($cli, $settings["commandList"]);
 $knettenba = new character($cli, "CAT", "Cat", 22, "Bugger all.");
 
 $arraything = $commandInterpreter->sliceInput($cli->out("You have a spanner, there is a nut.", "p"));
