@@ -12,8 +12,58 @@ class commandInterpreter {
 
 	//which command did the user input? use...with..., take, attack, etc
 	public function sliceInput($userInput, $outputString = null){
+		//turns input into array using regex of doom
+		//"^(.*?)(?:\s+|$)(?:(.*?)\s+(.*?)\s+(.*?)$|$)/i"
 
-		preg_match("/^(.*?)(?:\s+|$)(.*?)(?:\s+(.*?)\s+(.*?)$|$)/i", $userInput, $outputArray);
+		$list1 = "";
+		$list2 = "";
+
+		foreach($this->commandList["part1"] as $handle){
+			$list1 .= $handle;
+			$list1 .= "|";
+		}
+		$handle = null;
+
+		foreach($this->commandList["part2"] as $key => $handle){
+			if($this->commandList["part1"][$key] == $key){ //this if statement is a bit dodgy rn
+				$list2 .= $handle;
+				$list2 .= "|";
+				echo "\n SAUSAGES: ".$this->commandList["part1"][$key]."\n ".$key." ..END"
+			} else {
+				$list2 = "invalid;";
+			}
+
+		}
+		$handle = null;
+
+		$list1 = preg_replace("/^(.*)\|$/i", "$1", $list1);
+		$list2 = preg_replace("/^(.*)\|$/i", "$1", $list2);
+
+		echo "\n".$list1."\n";
+		echo $list2."\n";
+
+		preg_match("/^(".$list1.")(?:\s+|$)(?:(.*?)\s+(".$list2.")\s+(.*?)$|$)/i", $userInput, $outputArray);
+
+		$command1 = "invalid";
+		$command2 = "invalid";
+
+		foreach ($this->commandList["part1"] as $handle){
+			if (isset($outputArray[1])){
+				if ($handle == $outputArray[1]){
+					$command1 = $handle;
+				}
+			}
+		}
+
+		foreach ($this->commandList["part2"] as $handle){
+			if (isset($outputArray[3])){
+				if ($handle == $outputArray[3]){
+					$command2 = $handle;
+				}
+			}
+		}
+
+		echo "\n SLICE: ".$command1." ".$command2."\n";
 
 		return $outputArray;
 
@@ -39,7 +89,7 @@ class commandInterpreter {
 			$key = null; $handle = null;
 		}
 	
-		if($commandArray[2]){
+		if(isset($commandArray[2])){
 			$parameter1 = "exists";
 			echo "\n parameter 1 exists and is ".$commandArray[2];
 		}
