@@ -1,8 +1,8 @@
 # PHPTeA
-### a PHP TExt Adventure engine
+a PHP TExt Adventure engine
 
 ## What's this all about?
-[ReqApi| http://github.com/ReqApi] is improving her PHP skills. She is doing this by writing a game engine for command line text adventures from scratch. The engine will be relatively generic in terms of what type of game it can be used to make. It will however, likely be used to make a specific game when it is done.
+[ReqApi](http://github.com/ReqApi) is improving her PHP skills. She is doing this by writing a game engine for command line text adventures from scratch. The engine will be relatively generic in terms of what type of game it can be used to make. It will however, likely be used to make a specific game when it is done.
 
 ## What will the engine support?
 The engine will use a number of functions & objects to allow the game writer to focus on story & game mechanics without writing a great deal of procedural code. This will include:
